@@ -101,21 +101,30 @@ daily-bot-discord/
 2. Request API key
 3. Copy vào `.env`
 
-## Deploy
+## Chạy Bot
 
-Xem hướng dẫn chi tiết trong [docs/RENDER_DEPLOY.md](docs/RENDER_DEPLOY.md)
+### Local Windows
 
-**Khuyến nghị:**
-- **Render.com** (FREE & WORKING!) - 512 MB RAM, database persist, auto-deploy GitHub
-- Local Windows (Task Scheduler)
+**Cách 1: Chạy thủ công**
 
-**Ưu điểm Render:**
-- Deploy từ GitHub (auto-deploy khi push)
-- 512 MB RAM miễn phí
-- Database persist với disk storage
-- Web dashboard dễ quản lý
+Double-click file:
+```
+scripts\start_bot.bat
+```
 
-**Lưu ý:** Discloud hiện đang quá tải, không nhận bot mới free tier.
+**Cách 2: Auto-start khi Windows boot**
+
+1. `Win + R` → gõ `taskschd.msc` → Enter
+2. Create Basic Task
+3. Name: `Discord Weather Bot`
+4. Trigger: **When I log on**
+5. Action: **Start a program**
+6. Program: `D:\DATA\Code\daily-bot-discord\scripts\start_bot.bat`
+7. Finish
+
+Bot sẽ tự động chạy mỗi khi bật máy!
+
+**Xem chi tiết:** [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
 
 ## Development
 
