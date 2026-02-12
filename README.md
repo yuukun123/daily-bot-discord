@@ -103,14 +103,19 @@ daily-bot-discord/
 
 ## Deploy
 
-Xem hướng dẫn chi tiết trong [docs/SQUARECLOUD_DEPLOY.md](docs/SQUARECLOUD_DEPLOY.md)
+Xem hướng dẫn chi tiết trong [docs/RENDER_DEPLOY.md](docs/RENDER_DEPLOY.md)
 
 **Khuyến nghị:**
-- **Square Cloud** (FREE) - Đơn giản nhất, upload ZIP là xong!
-- Render (FREE tier có hạn chế)
-- PythonAnywhere (FREE tier có hạn chế)
+- **Render.com** (FREE & WORKING!) - 512 MB RAM, database persist, auto-deploy GitHub
+- Local Windows (Task Scheduler)
 
-**Lưu ý:** Railway không còn free tier nữa (tính phí $5/month).
+**Ưu điểm Render:**
+- Deploy từ GitHub (auto-deploy khi push)
+- 512 MB RAM miễn phí
+- Database persist với disk storage
+- Web dashboard dễ quản lý
+
+**Lưu ý:** Discloud hiện đang quá tải, không nhận bot mới free tier.
 
 ## Development
 
