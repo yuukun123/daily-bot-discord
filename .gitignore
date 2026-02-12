@@ -1,0 +1,139 @@
+# ========================================
+# Python
+# ========================================
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ========================================
+# Virtual Environments
+# ========================================
+venv/
+ENV/
+env/
+myENV/
+.venv
+
+# ========================================
+# Environment Variables & Secrets
+# ========================================
+.env
+.env.local
+.env.*.local
+*.env
+
+# ========================================
+# IDE & Editor
+# ========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ========================================
+# Testing & Coverage
+# ========================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+.pytype/
+
+# ========================================
+# Jupyter Notebook
+# ========================================
+.ipynb_checkpoints
+*.ipynb
+
+# ========================================
+# Bot Specific
+# ========================================
+# Downloaded HTML for debugging
+*.html
+tygiausd_page.html
+
+# Test scripts (optional - uncomment if you don't want to commit tests)
+# test_*.py
+# debug_*.py
+
+# Logs
+*.log
+logs/
+
+# ========================================
+# Database
+# ========================================
+*.db
+*.sqlite
+*.sqlite3
+
+# ========================================
+# OS Files
+# ========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========================================
+# Temporary Files
+# ========================================
+*.tmp
+*.temp
+tmp/
+temp/
+
+# ========================================
+# API Keys & Tokens (IMPORTANT!)
+# ========================================
+*_token.txt
+*_api_key.txt
+credentials.json
+config_local.py
+
+# ========================================
+# Node modules (if using any JS tools)
+# ========================================
+node_modules/
+package-lock.json
+yarn.lock
+
+# ========================================
+# Compiled files
+# ========================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ========================================
+# Distribution / packaging
+# ========================================
+*.tar.gz
+*.zip
+*.rar
