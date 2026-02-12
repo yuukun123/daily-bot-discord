@@ -1,17 +1,17 @@
-# 🤖 Discord Daily Weather Bot
+# Discord Daily Weather Bot
 
 Một Discord bot tự động gửi báo cáo hàng ngày về thời tiết, giá vàng, tỷ giá USD và thủy triều cho TP. Hồ Chí Minh.
 
-## ✨ Tính năng
+## Tính năng
 
-- 📅 **3 báo cáo tự động mỗi ngày** (07:00, 12:00, 18:00)
-- 🌤️ **Thời tiết & gió** từ OpenWeatherMap
-- 💰 **Giá vàng SJC miếng 1L** từ vAPI (multi-source fallback)
-- 💵 **Tỷ giá USD/VND** từ tygiausd.org (chợ đen + ngân hàng)
-- 🌊 **Thông tin thủy triều**
-- 🎨 **Rich Discord embed** với icons đẹp mắt
+- 3 báo cáo tự động mỗi ngày (07:00, 12:00, 18:00)
+- Thời tiết & gió từ OpenWeatherMap
+- Giá vàng SJC miếng 1L từ vAPI (multi-source fallback)
+- Tỷ giá USD/VND từ tygiausd.org (chợ đen + ngân hàng)
+- Thông tin thủy triều
+- Rich Discord embed với icons đẹp mắt
 
-## 🚀 Cài đặt nhanh
+## Cài đặt nhanh
 
 ### 1. Clone repository
 
@@ -53,7 +53,7 @@ scripts\start_bot.bat
 python bot/main.py
 ```
 
-## 📋 Commands
+## Commands
 
 | Command | Mô tả |
 |---------|-------|
@@ -62,7 +62,7 @@ python bot/main.py
 | `!hello` | Test bot |
 | `!ping` | Check latency |
 
-## 🏗️ Cấu trúc project
+## Cấu trúc project
 
 ```
 daily-bot-discord/
@@ -83,7 +83,7 @@ daily-bot-discord/
 └── requirements.txt       # Python dependencies
 ```
 
-## 🔑 Lấy API Keys
+## Lấy API Keys
 
 ### Discord Bot Token
 1. Vào [Discord Developer Portal](https://discord.com/developers/applications)
@@ -101,15 +101,15 @@ daily-bot-discord/
 2. Request API key
 3. Copy vào `.env`
 
-## 📡 Deploy
+## Deploy
 
 Xem hướng dẫn chi tiết trong [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
 
 **Tóm tắt:**
-- ✅ **Local:** Chạy `start_bot.bat` hoặc dùng Task Scheduler
-- ✅ **Cloud:** Railway, Render, PythonAnywhere
+- Local: Chạy `start_bot.bat` hoặc dùng Task Scheduler
+- Cloud: Railway, Render, PythonAnywhere
 
-## 🛠️ Development
+## Development
 
 ```bash
 # Install dev dependencies
@@ -122,18 +122,18 @@ python -m pytest tests/
 black bot/
 ```
 
-## 📝 License
+## License
 
 MIT License - xem file [LICENSE](LICENSE)
 
-## 🤝 Contributing
+## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first.
 
-## 📞 Support
+## Support
 
 Có vấn đề? Tạo issue trên [GitHub Issues](https://github.com/your-username/daily-bot-discord/issues)
 
 ---
 
-Made with ❤️ by yuu
+Made with love by yuu
