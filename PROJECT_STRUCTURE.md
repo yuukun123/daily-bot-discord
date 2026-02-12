@@ -10,7 +10,8 @@ daily-bot-discord/
 │       ├── weather_service.py
 │       ├── gold_service.py
 │       ├── tide_service.py
-│       └── usd_service.py
+│       ├── usd_service.py
+│       └── database_service.py
 │
 ├── tests/                   # Test files
 │   ├── __init__.py
@@ -21,13 +22,20 @@ daily-bot-discord/
 │   └── debug_*.py          # Debug tools
 │
 ├── docs/                    # Documentation
-│   └── DEPLOYMENT.md       # Deployment guide
+│   ├── SQUARECLOUD_DEPLOY.md  # Square Cloud deployment guide
+│   ├── DATABASE.md         # Database documentation
+│   └── DEPLOYMENT.md       # General deployment options
+│
+├── data/                    # Database storage (git ignored)
+│   └── daily_reports.db    # SQLite database
 │
 ├── config.py                # Configuration
+├── squarecloud.app          # Square Cloud config
 ├── .env                     # Environment variables (GIT IGNORED)
 ├── .env.example             # Example template
 ├── .gitignore               # Git ignore rules
 ├── requirements.txt         # Python dependencies
+├── daily-bot-discord.zip    # Ready to upload to Square Cloud
 └── README.md                # Main documentation
 ```
 

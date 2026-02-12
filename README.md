@@ -103,11 +103,14 @@ daily-bot-discord/
 
 ## Deploy
 
-Xem hướng dẫn chi tiết trong [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
+Xem hướng dẫn chi tiết trong [docs/SQUARECLOUD_DEPLOY.md](docs/SQUARECLOUD_DEPLOY.md)
 
-**Tóm tắt:**
-- Local: Chạy `start_bot.bat` hoặc dùng Task Scheduler
-- Cloud: Railway, Render, PythonAnywhere
+**Khuyến nghị:**
+- **Square Cloud** (FREE) - Đơn giản nhất, upload ZIP là xong!
+- Render (FREE tier có hạn chế)
+- PythonAnywhere (FREE tier có hạn chế)
+
+**Lưu ý:** Railway không còn free tier nữa (tính phí $5/month).
 
 ## Development
 
