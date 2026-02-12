@@ -12,6 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Import services
 from config import Config
 from bot.services import WeatherService, GoldService, TideService, USDService
+from bot.services.database_service import DatabaseService
 
 # Load environment variables
 load_dotenv()
@@ -31,6 +32,7 @@ weather_service = WeatherService(Config.OPENWEATHER_API_KEY)
 gold_service = GoldService(Config.VAPI_KEY)
 tide_service = TideService()
 usd_service = USDService()
+db_service = DatabaseService()  # Database service
 
 # Store channel ID for daily reports
 report_channel_id = None
@@ -176,7 +178,19 @@ async def send_report(time_label):
 # Morning report task (7:00 AM)
 @tasks.loop(hours=24)
 async def morning_report_task():
-    """Send morning report at 7:00 AM"""
+    """Send morning report at 7:00 AM and SAVE to database"""
+    global report_channel_id
+    
+    # Fetch all data
+    weather_data = await weather_service.get_weather()
+    gold_data = await gold_service.get_gold_price()
+    tide_data = await tide_service.get_tide_info()
+    usd_data = await usd_service.get_usd_rates()
+    
+    # SAVE TO DATABASE (CHỈ VÀO 7H SÁNG)
+    db_service.save_daily_report(weather_data, gold_data, usd_data, tide_data)
+    
+    # Send report to channel
     await send_report("07:00 Sáng")
 
 

@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "date": "2026-02-12",
+    "timestamp": "2026-02-12 21:35:11",
+    "temperature": 28.5,
+    "feels_like": 32.0,
+    "humidity": 75,
+    "clouds": 40,
+    "visibility": 10.0,
+    "weather_description": "Scattered clouds",
+    "wind_speed": 15.5,
+    "wind_direction": "Đông Bắc",
+    "gold_type": "SJC Vàng 9999",
+    "gold_buy": "178,000",
+    "gold_sell": "181,000",
+    "usd_black_buy": "26200",
+    "usd_black_sell": "26250",
+    "usd_bank_buy": "25750",
+    "usd_bank_transfer": "25780",
+    "usd_bank_sell": "26160",
+    "usd_bank_source": "Vietcombank",
+    "tide_location": "TP. Hồ Chí Minh",
+    "tide_high": "06:30 (3.2m)",
+    "tide_low": "12:45 (0.8m)",
+    "tide_note": "Placeholder data"
+  }
+]
