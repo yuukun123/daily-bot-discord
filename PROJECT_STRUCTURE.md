@@ -11,6 +11,7 @@ daily-bot-discord/
 │       ├── gold_service.py
 │       ├── tide_service.py
 │       ├── usd_service.py
+│       ├── forex_service.py    # AUD and other currencies
 │       └── database_service.py
 │
 ├── tests/                   # Test files

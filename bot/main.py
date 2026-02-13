@@ -214,9 +214,10 @@ async def morning_report_task():
     gold_data = await gold_service.get_gold_price()
     tide_data = await tide_service.get_tide_info()
     usd_data = await usd_service.get_usd_rates()
+    aud_data = await forex_service.get_aud_rates()
     
     # SAVE TO DATABASE (CHỈ VÀO 7H SÁNG)
-    db_service.save_daily_report(weather_data, gold_data, usd_data, tide_data)
+    db_service.save_daily_report(weather_data, gold_data, usd_data, aud_data, tide_data)
     print(f"[07:00 Sáng] Đã lưu dữ liệu vào database")
     
     # Send report to channel

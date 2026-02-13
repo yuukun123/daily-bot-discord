@@ -27,78 +27,80 @@ class DatabaseService:
     
     def init_database(self):
         """Tạo bảng nếu chưa tồn tại"""
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS daily_reports (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                date TEXT NOT NULL,
-                timestamp TEXT NOT NULL,
-                
-                -- Thời tiết
-                temperature REAL,
-                feels_like REAL,
-                humidity INTEGER,
-                clouds INTEGER,
-                visibility REAL,
-                weather_description TEXT,
-                wind_speed REAL,
-                wind_direction TEXT,
-                
-                -- Giá vàng
-                gold_type TEXT,
-                gold_buy TEXT,
-                gold_sell TEXT,
-                
-                -- Tỷ giá USD
-                usd_black_buy TEXT,
-                usd_black_sell TEXT,
-                usd_bank_buy TEXT,
-                usd_bank_transfer TEXT,
-                usd_bank_sell TEXT,
-                usd_bank_source TEXT,
-                
-                -- Thủy triều
-                tide_location TEXT,
-                tide_high TEXT,
-                tide_low TEXT,
-                tide_note TEXT,
-                
-                UNIQUE(date)
-            )
-        ''')
-        
-        conn.commit()
-        conn.close()
-        print("Database initialized successfully")
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS daily_reports (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    date TEXT NOT NULL,
+                    
+                    -- Weather data
+                    temperature REAL,
+                    feels_like REAL,
+                    humidity INTEGER,
+                    clouds INTEGER,
+                    visibility REAL,
+                    description TEXT,
+                    wind_speed REAL,
+                    wind_direction TEXT,
+                    
+                    -- Gold data
+                    gold_type TEXT,
+                    gold_buy TEXT,
+                    gold_sell TEXT,
+                    
+                    -- USD data
+                    usd_bank_buy TEXT,
+                    usd_bank_transfer TEXT,
+                    usd_bank_sell TEXT,
+                    usd_black_buy TEXT,
+                    usd_black_sell TEXT,
+                    
+                    -- AUD data (NEW)
+                    aud_buy TEXT,
+                    aud_transfer TEXT,
+                    aud_sell TEXT,
+                    
+                    -- Tide data
+                    tide_location TEXT,
+                    tide_high TEXT,
+                    tide_low TEXT,
+                    tide_note TEXT,
+                    
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            ''')
+            
+            conn.commit()
+            conn.close()
+            print("Database initialized successfully")
+        except Exception as e:
+            print(f"Database init error: {e}")
     
     def save_daily_report(self, weather_data, gold_data, usd_data, tide_data):
-        """
-        Lưu báo cáo hàng ngày vào database
-        CHỈ được gọi vào lúc 7h sáng
-        """
-        tz = pytz.timezone('Asia/Ho_Chi_Minh')
-        now = datetime.now(tz)
-        date_str = now.strftime('%Y-%m-%d')
-        timestamp_str = now.strftime('%Y-%m-%d %H:%M:%S')
-        
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        
+    def save_daily_report(self, weather_data, gold_data, usd_data, aud_data, tide_data):
+        """Lưu báo cáo hàng ngày vào database"""
         try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            today = datetime.now().strftime('%Y-%m-%d')
+            
             cursor.execute('''
-                INSERT OR REPLACE INTO daily_reports (
-                    date, timestamp,
-                    temperature, feels_like, humidity, clouds, visibility, 
-                    weather_description, wind_speed, wind_direction,
+                INSERT INTO daily_reports (
+                    date,
+                    temperature, feels_like, humidity, clouds, visibility,
+                    description, wind_speed, wind_direction,
                     gold_type, gold_buy, gold_sell,
-                    usd_black_buy, usd_black_sell, 
-                    usd_bank_buy, usd_bank_transfer, usd_bank_sell, usd_bank_source,
+                    usd_bank_buy, usd_bank_transfer, usd_bank_sell,
+                    usd_black_buy, usd_black_sell,
+                    aud_buy, aud_transfer, aud_sell,
                     tide_location, tide_high, tide_low, tide_note
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (
-                date_str, timestamp_str,
+                today,
                 # Weather
                 weather_data.get('temperature') if weather_data else None,
                 weather_data.get('feels_like') if weather_data else None,
@@ -113,12 +115,15 @@ class DatabaseService:
                 gold_data.get('buy') if gold_data else None,
                 gold_data.get('sell') if gold_data else None,
                 # USD
-                usd_data['black_market']['buy'] if usd_data else None,
-                usd_data['black_market']['sell'] if usd_data else None,
                 usd_data['bank']['buy'] if usd_data else None,
                 usd_data['bank']['transfer'] if usd_data else None,
                 usd_data['bank']['sell'] if usd_data else None,
-                usd_data['bank']['source'] if usd_data else None,
+                usd_data['black_market']['buy'] if usd_data else None,
+                usd_data['black_market']['sell'] if usd_data else None,
+                # AUD (NEW)
+                aud_data.get('buy') if aud_data else None,
+                aud_data.get('transfer') if aud_data else None,
+                aud_data.get('sell') if aud_data else None,
                 # Tide
                 tide_data.get('location') if tide_data else None,
                 tide_data.get('high_tide') if tide_data else None,
@@ -127,11 +132,12 @@ class DatabaseService:
             ))
             
             conn.commit()
-            print(f"✅ Đã lưu báo cáo ngày {date_str} vào database")
+            print(f"✅ Đã lưu báo cáo ngày {today} vào database")
             return True
             
         except Exception as e:
             print(f"❌ Lỗi khi lưu database: {e}")
+            traceback.print_exc()
             conn.rollback()
             return False
         finally:
