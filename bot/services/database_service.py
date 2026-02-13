@@ -78,8 +78,7 @@ class DatabaseService:
             print("Database initialized successfully")
         except Exception as e:
             print(f"Database init error: {e}")
-    
-    def save_daily_report(self, weather_data, gold_data, usd_data, tide_data):
+            
     def save_daily_report(self, weather_data, gold_data, usd_data, aud_data, tide_data):
         """Lưu báo cáo hàng ngày vào database"""
         try:
