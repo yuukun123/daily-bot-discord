@@ -8,9 +8,9 @@ class GoldService:
         self.api_key = api_key
         # Try multiple sources - PNJ first, fallback to SJC if PNJ is empty
         self.endpoints = [
-            ("PNJ", "https://api.vnappmob.com/api/v2/gold/pnj"),
+            # ("PNJ", "https://api.vnappmob.com/api/v2/gold/pnj"),
             ("SJC", "https://api.vnappmob.com/api/v2/gold/sjc"),
-            ("DOJI", "https://api.vnappmob.com/api/v2/gold/doji"),
+            # ("DOJI", "https://api.vnappmob.com/api/v2/gold/doji"),
         ]
 
         
