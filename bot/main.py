@@ -11,7 +11,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import services
 from config import Config
-from bot.services import WeatherService, GoldService, TideService, USDService
+from bot.services import WeatherService, GoldService, TideService, USDService, ForexService
 from bot.services.database_service import DatabaseService
 
 # Load environment variables
@@ -32,6 +32,7 @@ weather_service = WeatherService(Config.OPENWEATHER_API_KEY)
 gold_service = GoldService(Config.VAPI_KEY)
 tide_service = TideService()
 usd_service = USDService()
+forex_service = ForexService()  # For AUD and other currencies
 db_service = DatabaseService()  # Database service
 
 # Store channel ID for daily reports
@@ -72,6 +73,7 @@ async def create_daily_embed():
     gold_data = await gold_service.get_gold_price()
     tide_data = await tide_service.get_tide_info()
     usd_data = await usd_service.get_usd_rates()
+    aud_data = await forex_service.get_aud_rates()
     
     # Create embed
     embed = discord.Embed(
@@ -147,8 +149,22 @@ async def create_daily_embed():
     else:
         embed.add_field(name="Tỷ Giá USD/VND", value="⚠️ Không lấy được dữ liệu", inline=False)
     
+    # Add AUD exchange rate information
+    if aud_data:
+        aud_text = f"""
+        **{aud_data['source']}:**
+        -- Mua tiền mặt: {aud_data['buy']} VNĐ
+        -- Chuyển khoản: {aud_data['transfer']} VNĐ
+        -- Bán ra: {aud_data['sell']} VNĐ
+        **-----------------------------------------------**
+        """
+        print("\n\n")
+        embed.add_field(name="Tỷ Giá AUD/VND", value=aud_text, inline=False)
+    else:
+        embed.add_field(name="Tỷ Giá AUD/VND", value="⚠️ Không lấy được dữ liệu", inline=False)
+    
     # Set footer
-    embed.set_footer(text="Bot by yuu | Dữ liệu từ OpenWeatherMap, vAPI & tygiausd.org")
+    embed.set_footer(text="Bot by yuu | Dữ liệu từ OpenWeatherMap, vAPI, tygiausd.org & Vietcombank")
     
     return embed
 
