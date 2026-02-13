@@ -1,5 +1,5 @@
 @echo off
-cd /d D:\DATA\Code\daily-weather-bot
+cd /d D:\DATA\Code\daily-bot-discord
 call D:\miniconda\envs\myENV\Scripts\activate.bat
-python src/main.py
+python bot/main.py
 pause
