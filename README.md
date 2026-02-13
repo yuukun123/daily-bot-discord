@@ -1,15 +1,17 @@
 # Discord Daily Weather Bot
 
-Một Discord bot tự động gửi báo cáo hàng ngày về thời tiết, giá vàng, tỷ giá USD và thủy triều cho TP. Hồ Chí Minh.
+Một Discord bot tự động gửi báo cáo hàng ngày về thời tiết, giá vàng, tỷ giá USD, tỷ giá AUD và thủy triều cho TP. Hồ Chí Minh.
 
-## Tính năng
+## Tinh nang
 
-- 3 báo cáo tự động mỗi ngày (07:00, 12:00, 18:00)
-- Thời tiết & gió từ OpenWeatherMap
-- Giá vàng SJC miếng 1L từ vAPI (multi-source fallback)
-- Tỷ giá USD/VND từ tygiausd.org (chợ đen + ngân hàng)
-- Thông tin thủy triều
-- Rich Discord embed với icons đẹp mắt
+- Bao cao thoi tiet hang ngay (nhiet do, do am, gio, may, tam nhin)
+- Gia vang SJC 9999 (mua/ban)
+- Ty gia USD/VND (ngan hang + cho den)
+- Ty gia AUD/VND (Vietcombank)
+- Thong tin thuy trieu (trieu len/xuong)
+- Tu dong gui bao cao vao 3 thoi diem: 7h sang, 12h trua, 6h chieu
+- Luu lich su bao cao vao database SQLite
+- Lenh thu cong: !daily, !hello, !ping, !setchannels đẹp mắt
 
 ## Cài đặt nhanh
 
