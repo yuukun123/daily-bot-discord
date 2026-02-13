@@ -9,14 +9,21 @@ import pytz
 from pathlib import Path
 
 class DatabaseService:
-    def __init__(self, db_path="data/daily_reports.db"):
-        self.db_path = db_path
+    def __init__(self, db_path=None):
+        # Default to project root data folder, not relative to where bot is run
+        if db_path is None:
+            # Get project root (parent of bot folder)
+            project_root = Path(__file__).parent.parent.parent
+            db_path = project_root / "data" / "daily_reports.db"
+        
+        self.db_path = str(db_path)
         
         # Tạo folder data nếu chưa có
-        Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+        Path(self.db_path).parent.mkdir(parents=True, exist_ok=True)
         
         # Khởi tạo database
         self.init_database()
+        print(f"Database initialized at: {self.db_path}")
     
     def init_database(self):
         """Tạo bảng nếu chưa tồn tại"""

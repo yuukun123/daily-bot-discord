@@ -162,17 +162,27 @@ async def send_report(time_label):
         print(f"[{time_label}] Chưa set channel cho báo cáo. Dùng !setchannel để set.")
         return
     
-    channel = bot.get_channel(report_channel_id)
-    if not channel:
-        print(f"[{time_label}] Không tìm thấy channel ID: {report_channel_id}")
-        return
-    
     try:
+        # Use fetch_channel instead of get_channel to make an API call
+        # get_channel relies on cache which might not be populated
+        channel = await bot.fetch_channel(report_channel_id)
+        if not channel:
+            print(f"[{time_label}] Không tìm thấy channel ID: {report_channel_id}")
+            return
+        
+        print(f"[{time_label}] Đang tạo báo cáo...")
         embed = await create_daily_embed()
+        
+        print(f"[{time_label}] Đang gửi báo cáo vào channel: {channel.name}")
         await channel.send(embed=embed)
-        print(f"[{time_label}] Đã gửi báo cáo vào channel: {channel.name}")
+        print(f"[{time_label}] ✅ Đã gửi báo cáo thành công vào channel: {channel.name}")
+    except discord.NotFound:
+        print(f"[{time_label}] ❌ Channel ID {report_channel_id} không tồn tại hoặc bot không có quyền truy cập!")
+    except discord.Forbidden:
+        print(f"[{time_label}] ❌ Bot không có quyền gửi tin nhắn trong channel ID {report_channel_id}!")
     except Exception as e:
-        print(f"[{time_label}] Lỗi khi gửi báo cáo: {e}")
+        print(f"[{time_label}] ❌ Lỗi khi gửi báo cáo: {type(e).__name__}: {e}")
+
 
 
 # Morning report task (7:00 AM)
@@ -180,6 +190,8 @@ async def send_report(time_label):
 async def morning_report_task():
     """Send morning report at 7:00 AM and SAVE to database"""
     global report_channel_id
+    
+    print(f"[07:00 Sáng] Task triggered! Channel ID: {report_channel_id}")
     
     # Fetch all data
     weather_data = await weather_service.get_weather()
@@ -189,6 +201,7 @@ async def morning_report_task():
     
     # SAVE TO DATABASE (CHỈ VÀO 7H SÁNG)
     db_service.save_daily_report(weather_data, gold_data, usd_data, tide_data)
+    print(f"[07:00 Sáng] Đã lưu dữ liệu vào database")
     
     # Send report to channel
     await send_report("07:00 Sáng")
