@@ -2,16 +2,24 @@
 
 Một Discord bot tự động gửi báo cáo hàng ngày về thời tiết, giá vàng, tỷ giá USD, tỷ giá AUD và thủy triều cho TP. Hồ Chí Minh.
 
-## Tinh nang
+## Tính năng
 
-- Bao cao thoi tiet hang ngay (nhiet do, do am, gio, may, tam nhin)
-- Gia vang SJC 9999 (mua/ban)
-- Ty gia USD/VND (ngan hang + cho den)
-- Ty gia AUD/VND (Vietcombank)
-- Thong tin thuy trieu (trieu len/xuong)
-- Tu dong gui bao cao vao 3 thoi diem: 7h sang, 12h trua, 6h chieu
-- Luu lich su bao cao vao database SQLite
-- Lenh thu cong: !daily, !hello, !ping, !setchannels đẹp mắt
+- Báo cáo thời tiết hàng ngày (nhiệt độ, độ ẩm, gió, mây, tầm nhìn)
+- Giá vàng SJC 9999 (mua/bán)
+- Tỷ giá USD/VND (ngân hàng Vietcombank + chợ đen)
+- Tỷ giá AUD/VND (Vietcombank)
+- Thông tin thủy triều (triều lên/xuống)
+- Tự động gửi báo cáo vào 3 thời điểm: 7h sáng, 12h trưa, 6h chiều
+- Lưu lịch sử báo cáo vào database SQLite (chỉ 7h sáng)
+- Lệnh thủ công: !daily, !hello, !ping, !setchannel
+
+## Nguồn dữ liệu
+
+- **Thời tiết:** [OpenWeatherMap API](https://openweathermap.org/)
+- **Giá vàng:** [vAPI - Vietnam Gold Price API](https://vapi.vn/)
+- **Tỷ giá USD:** [tygiausd.org](https://tygiausd.org/) (scraping)
+- **Tỷ giá AUD:** [Vietcombank XML API](https://portal.vietcombank.com.vn/)
+- **Thủy triều:** Hardcoded data (Vũng Tàu)
 
 ## Cài đặt nhanh
 
